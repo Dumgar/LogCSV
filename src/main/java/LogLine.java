@@ -1,13 +1,13 @@
 import java.util.Date;
 
 public class LogLine {
-    private Date date;
+    private final Date date;
     private String userID;
     private String url;
     private int timeSpend;
 
     public LogLine(long date, String userID, String url, int timeSpend) {
-        this.date.setTime(date);
+        this.date = new Date(date);
         this.userID = userID;
         this.url = url;
         this.timeSpend = timeSpend;
