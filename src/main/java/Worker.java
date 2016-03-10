@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 
 public class Worker implements Runnable {
     private final String fileName;
@@ -9,8 +12,9 @@ public class Worker implements Runnable {
     }
 
     public void run() {
-        dataProcessor.importData(fileName);
 
+        ArrayList<LogLine> arrayList = dataProcessor.importData(fileName);
 
+        dataProcessor.exportData(fileName, dataProcessor.dataAnalize(arrayList));
     }
 }

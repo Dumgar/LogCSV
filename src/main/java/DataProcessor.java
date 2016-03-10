@@ -4,13 +4,13 @@ import java.util.*;
 
 public class DataProcessor {
 
-    static ArrayList importData(String fileName) {
+    static ArrayList<LogLine> importData(String fileName) {
         ArrayList<LogLine> dataArray = new ArrayList<>();
         String currLine;
         int i = 0;
 
         try(BufferedReader br = new BufferedReader(new FileReader(fileName))) {
-            br.readLine(); //TODO посмотреть как пропускать header
+            br.readLine();
             while ((currLine = br.readLine()) != null){
                 String[] sArr = currLine.split(",");
                 LogLine temp = new LogLine(Long.parseLong(sArr[0]), sArr[1], sArr[2], Integer.parseInt(sArr[3]));
@@ -29,7 +29,7 @@ public class DataProcessor {
         SortedSet<Date> dataSet = new TreeSet<>(hashMap.keySet());
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH);
-        try(BufferedWriter bw = new BufferedWriter(new FileWriter(filename))) {
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter("avg_" + filename))) {
 
             for (Date elem : dataSet) {
 
@@ -50,7 +50,8 @@ public class DataProcessor {
 
     }
 
-    static HashMap<Date, HashMap<UnicID, Average>> dataAnalize(ArrayList<LogLine> arrayList, HashMap<Date, HashMap<UnicID, Average>> hashMap) {
+    static HashMap<Date, HashMap<UnicID, Average>> dataAnalize(ArrayList<LogLine> arrayList) {
+        HashMap<Date, HashMap<UnicID, Average>> hashMap = new HashMap<>();
 
         for (int i = 0; i < arrayList.size(); i++) {
             LogLine elem = arrayList.get(i);

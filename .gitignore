@@ -1,14 +1,7 @@
+target/
 
-.idea/.name
+.idea/
 
-.idea/compiler.xml
+LogCSV.iml
 
-.idea/copyright/profiles_settings.xml
-
-.idea/encodings.xml
-
-.idea/misc.xml
-
-.idea/modules.xml
-
-.idea/workspace.xml
+pom.xml

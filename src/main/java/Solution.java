@@ -1,18 +1,21 @@
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class Main {
+public class Solution {
 
     private final ExecutorService threadPool;
     private boolean isStarted = false;
 
-    private Main() {
+    private Solution() {
         this.threadPool = Executors.newFixedThreadPool(10);
     }
 
 
     public static void main(String[] args) {
-        new Main().start();
+        Solution solution = new Solution();
+        solution.start();
+        solution.addNewFile("file1.csv");
+
     }
 
     public boolean isStarted() {
