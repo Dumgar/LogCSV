@@ -1,8 +1,5 @@
 import java.util.Date;
 
-/**
- * Created by romandmitriev on 10.03.16.
- */
 public class LogLine {
     private Date date;
     private String userID;
