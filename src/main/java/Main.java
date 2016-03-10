@@ -1,14 +1,40 @@
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class Main {
 
-    public static void main(String[] args) {
-        HashMap<Date, HashMap<UnicID, Average>> core = new HashMap<>();
+    private final ExecutorService threadPool;
+    private boolean isStarted = false;
 
-        ArrayList lineList = DataProcessor.importData("sczz");
-
-
+    private Main() {
+        this.threadPool = Executors.newFixedThreadPool(10);
     }
+
+
+    public static void main(String[] args) {
+        new Main().start();
+    }
+
+    public boolean isStarted() {
+        return isStarted;
+    }
+
+    private void start() {
+        isStarted = true;
+    }
+
+    private synchronized void stop() {
+        isStarted = false;
+        threadPool.shutdown();
+        while (!threadPool.isTerminated()) {
+        }
+    }
+
+    private void addNewFile(String fileName) {
+        threadPool.execute(new Worker(fileName));
+    }
+
+
+
+
 }
